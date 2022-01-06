@@ -12,9 +12,12 @@ function FilteredEventsPage() {
   const router = useRouter();
   const filterData = router.query.slug;
 
-  const { data, error } = useSWR(
-    "https://nextjs-course-ff58f-default-rtdb.firebaseio.com/events.json"
-  );
+ 
+  const { data, error } = useSWR("https://nextjs-course-ff58f-default-rtdb.firebaseio.com/events.json");
+
+  
+
+
   console.log(data);
   useEffect(() => {
     if (data) {
@@ -28,14 +31,14 @@ function FilteredEventsPage() {
       }
 
       setLoadedEvents(events);
+      newFunction()
     }
   }, [data]);
+
 
   if (!loadedEvents) {
     return <p className="center">Loading...</p>;
   }
-
-  console.log(loadedEvents);
 
   const filteredYear = filterData[0];
   const filteredMonth = filterData[1];
